@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Form Style Survey</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .form-container {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            max-width: 650px;
+            width: 100%;
+            padding: 40px;
+        }
+
+        .form-header {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .form-title {
+            font-size: 32px;
+            font-weight: 300;
+            color: #202124;
+            margin-bottom: 10px;
+            letter-spacing: 0.25px;
+        }
+
+        .form-description {
+            font-size: 14px;
+            color: #5f6368;
+            line-height: 1.5;
+        }
+
+        .form-group {
+            margin-bottom: 30px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .question-label {
+            font-size: 16px;
+            font-weight: 500;
+            color: #202124;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+        }
+
+        .required {
+            color: #d33b27;
+            margin-left: 4px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="number"],
+        textarea,
+        select {
+            padding: 12px;
+            font-size: 14px;
+            border: none;
+            border-bottom: 2px solid #dadce0;
+            font-family: inherit;
+            transition: border-color 0.3s ease;
+            background-color: transparent;
+        }
+
+        input[type="text"]:hover,
+        input[type="email"]:hover,
+        input[type="number"]:hover,
+        textarea:hover,
+        select:hover {
+            border-bottom-color: #bdc1c6;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="number"]:focus,
+        textarea:focus,
+        select:focus {
+            outline: none;
+            border-bottom-color: #4285f4;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+            padding: 12px;
+        }
+
+        .option-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .checkbox-option,
+        .radio-option {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        input[type="checkbox"],
+        input[type="radio"] {
+            width: 18px;
+            height: 18px;
+            margin-right: 12px;
+            cursor: pointer;
+            accent-color: #4285f4;
+        }
+
+        .option-label {
+            font-size: 14px;
+            color: #3c4043;
+            cursor: pointer;
+            flex: 1;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 12px;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        button {
+            padding: 10px 24px;
+            font-size: 14px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn {
+            background-color: #4285f4;
+            color: white;
+        }
+
+        .submit-btn:hover {
+            background-color: #1a73e8;
+            box-shadow: 0 2px 8px rgba(66, 133, 244, 0.3);
+        }
+
+        .clear-btn {
+            background-color: #f1f3f4;
+            color: #3c4043;
+        }
+
+        .clear-btn:hover {
+            background-color: #e8eaed;
+        }
+
+        .section-divider {
+            margin: 40px 0;
+            padding: 20px 0;
+            border-top: 2px solid #e0e0e0;
+        }
+
+        @media (max-width: 600px) {
+            .form-container {
+                padding: 20px;
+            }
+
+            .form-title {
+                font-size: 24px;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+
+            button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <div class="form-header">
+            <h1 class="form-title">Customer Feedback Form</h1>
+            <p class="form-description">We'd love to hear from you! Please take a few minutes to share your feedback with us.</p>
+        </div>
+
+        <form id="myForm">
+            <!-- Text Input -->
+            <div class="form-group">
+                <label class="question-label">
+                    What is your name?
+                    <span class="required">*</span>
+                </label>
+                <input type="text" name="name" required>
+            </div>
+
+            <!-- Email Input -->
+            <div class="form-group">
+                <label class="question-label">
+                    What is your email?
+                    <span class="required">*</span>
+                </label>
+                <input type="email" name="email" required>
+            </div>
+
+            <!-- Section Divider -->
+            <div class="section-divider"></div>
+
+            <!-- Radio Buttons -->
+            <div class="form-group">
+                <label class="question-label">
+                    How satisfied are you with our service?
+                    <span class="required">*</span>
+                </label>
+                <div class="option-group">
+                    <label class="radio-option">
+                        <input type="radio" name="satisfaction" value="very-satisfied" required>
+                        <span class="option-label">Very Satisfied</span>
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="satisfaction" value="satisfied">
+                        <span class="option-label">Satisfied</span>
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="satisfaction" value="neutral">
+                        <span class="option-label">Neutral</span>
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="satisfaction" value="dissatisfied">
+                        <span class="option-label">Dissatisfied</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Checkboxes -->
+            <div class="form-group">
+                <label class="question-label">
+                    Which of the following best describes your experience?
+                </label>
+                <div class="option-group">
+                    <label class="checkbox-option">
+                        <input type="checkbox" name="experience" value="easy">
+                        <span class="option-label">Easy to use</span>
+                    </label>
+                    <label class="checkbox-option">
+                        <input type="checkbox" name="experience" value="helpful">
+                        <span class="option-label">Helpful support</span>
+                    </label>
+                    <label class="checkbox-option">
+                        <input type="checkbox" name="experience" value="fast">
+                        <span class="option-label">Fast service</span>
+                    </label>
+                    <label class="checkbox-option">
+                        <input type="checkbox" name="experience" value="reliable">
+                        <span class="option-label">Reliable</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Dropdown -->
+            <div class="form-group">
+                <label class="question-label">
+                    How did you find us?
+                    <span class="required">*</span>
+                </label>
+                <select name="source" required>
+                    <option value="">-- Select an option --</option>
+                    <option value="search">Search Engine</option>
+                    <option value="social">Social Media</option>
+                    <option value="friend">Friend Recommendation</option>
+                    <option value="ad">Advertisement</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+
+            <!-- Textarea -->
+            <div class="form-group">
+                <label class="question-label">
+                    Any additional comments?
+                </label>
+                <textarea name="comments" placeholder="Share your thoughts..."></textarea>
+            </div>
+
+            <!-- Buttons -->
+            <div class="button-group">
+                <button type="submit" class="submit-btn">Submit</button>
+                <button type="reset" class="clear-btn">Clear</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('myForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your feedback! Form submitted successfully.');
+            this.reset();
+        });
+    </script>
+</body>
+</html>
